@@ -1,0 +1,26 @@
+{
+  "name": "base-proyect-sass",
+  "version": "1.0.0",
+  "description": "Proyecto base para maquetar con SASS",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/landinezrichard/base-proyect-sass.git"
+  },
+  "author": "Ricardo Landínez <landinezrichard@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/landinezrichard/base-proyect-sass/issues"
+  },
+  "homepage": "https://github.com/landinezrichard/base-proyect-sass#readme",
+  "devDependencies": {
+    "browser-sync": "^2.27.7",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-imagemin": "^8.0.0",
+    "gulp-sass": "^5.1.0"
+  }
+}
