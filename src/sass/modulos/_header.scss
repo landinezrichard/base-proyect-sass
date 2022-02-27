@@ -1,0 +1,41 @@
+/*HEADER*/
+
+.Header{
+	width: 100%;
+	background-color: #ccc;
+	overflow: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999;
+	
+	.u-centrar{
+		height: 79px;
+		line-height: 79px;
+		text-align: right;
+	}
+
+	&-logo{
+		float: left;
+		width: 178px;
+		margin-left: 20px;
+		text-decoration: none;
+
+	&-img{
+		display: inline-block;
+		width: 177px;
+		vertical-align: middle;
+	}
+
+		h1{
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			margin: -1px;
+			padding: 0;
+			overflow: hidden;
+			border: 0;			
+		}
+	}
+}

@@ -1,10 +1,27 @@
-body{
-    background-color: #eeeeee;
+//Normalize
+@use './modulos/normalize';
 
-    div{
-        display: grid;
-        transition: all .5s;
-        user-select: none;
-        background: linear-gradient(to bottom, white, black);
-    }
-}
+//Mixins
+@use './modulos/mixins';
+
+//Fuentes
+@use './modulos/fuentes';
+
+//Estilos generales
+@use './modulos/generales';
+
+//---------------------------------------------------------------------
+// COMPONENTES
+//---------------------------------------------------------------------
+
+//Header
+@use './modulos/header';
+
+//Menu
+@use './modulos/menu';
+
+//FOOTER
+@use './modulos/footer';
+
+//RESPONSIVE
+@use './modulos/responsive';

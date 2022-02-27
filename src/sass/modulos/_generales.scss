@@ -1,0 +1,39 @@
+//---------------------------------------------------------------------
+// ESTILOS GENERALES
+//---------------------------------------------------------------------
+
+html{
+	min-height: 100%;
+	font-size: 16px;
+	font-family:"Open Sans", sans-serif;
+}
+
+body{
+	margin-bottom: 100px;//para que el footer no tape contenido
+}
+
+img{
+	max-width: 100%;
+	height: auto;
+	vertical-align: bottom; //quita el margen raro abajo de la img
+}
+
+.clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+main.u-centrar{
+	margin-top: 79px;
+}
+
+//---------------------------------------------------------------------
+// UTILIDADES (REUSABLE CLASES)
+//---------------------------------------------------------------------
+
+.u-centrar{
+	margin: 0 auto;
+	text-align: center;
+	max-width: 1440px;
+}

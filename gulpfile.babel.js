@@ -17,6 +17,8 @@ import imagemin from 'gulp-imagemin';
 //Browser sync
 import { init as server, stream, reload } from 'browser-sync';
 
+//Plumber
+import plumber from 'gulp-plumber';
 
 //---------------------------------------------------------------------
 //  RUTAS DE LOS ARCHIVOS
@@ -38,8 +40,17 @@ const paths = {
 	},
 	images:{
 		// src  : './src/assets/img/**/*.+(png|jpg|gif)',
-		src: './src/assets/img/**/*', //asi toma cualquier extension de imagen
+		src: './src/assets/img/**/*', //así toma cualquier extensión de imagen
 		dest  : './dist/assets/img/'
+	},
+	fonts:{
+		src : [
+			'src/assets/**/*.eot',
+			'src/assets/**/*.svg',
+			'src/assets/**/*.ttf',
+			'src/assets/**/*.woff'
+		],
+		dest  : './dist/assets/fonts/'
 	},
 	server:{
 		folder : './dist'
@@ -52,6 +63,7 @@ const paths = {
 
 gulp.task('copy-html', () => {
 	return gulp.src(paths.html.watch)
+		.pipe(plumber())
 		.pipe(gulp.dest(paths.html.dest))
 });
 
@@ -61,6 +73,7 @@ gulp.task('copy-html', () => {
 
 gulp.task('sass', () => {
 	return gulp.src(paths.sass.src)
+		.pipe(plumber())
 		.pipe(
 			sass({
 				outputStyle: 'expanded' //Values: nested, expanded, compact, compressed
@@ -77,6 +90,7 @@ gulp.task('sass', () => {
 
 gulp.task('img-min', () => {
 	return gulp.src(paths.images.src)
+		.pipe(plumber())
 		.pipe(imagemin([
 			imagemin.gifsicle({interlaced: true}),
 			imagemin.mozjpeg({quality: 75, progressive: true}),
@@ -103,20 +117,18 @@ gulp.task('img-min', () => {
 
 gulp.task('copy-js', () => {
 	return gulp.src(paths.js.src)
+		.pipe(plumber())
 		.pipe(gulp.dest(paths.js.dest))
 });
 
-
 //---------------------------------------------------------------------
-// TAREA WATCH
+// TAREA COPIAR FUENTES
 //---------------------------------------------------------------------
-
-// function watchTask(){
-// 	watch(paths.css.watch, compileSass);
-// 	watch(paths.html.watch, copyHtml);
-// 	watch(paths.js.src, copyJs);
-// 	watch(paths.images.src, optimizeImg);
-// }
+gulp.task('copy-fonts', () => {
+	return gulp.src(paths.fonts.src)
+		.pipe(plumber())
+		.pipe(gulp.dest(paths.fonts.dest))
+});
 
 //---------------------------------------------------------------------
 // TAREA POR DEFECTO
@@ -132,7 +144,7 @@ gulp.task('default', () => {
 	//  WATCH + RELOAD BROWSER
 	gulp.watch(paths.html.watch, gulp.series('copy-html') ).on('change', reload);
 	gulp.watch(paths.sass.watch, gulp.series('sass') );
-	// gulp.watch(paths.js.src, gulp.series('copy-js') ).on('change', reload);
+	gulp.watch(paths.js.src, gulp.series('copy-js') ).on('change', reload);
 });
 
 // "series" ejecuta una tarea tras otra en orden.
