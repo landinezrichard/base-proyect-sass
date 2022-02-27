@@ -2,6 +2,9 @@ body{
     background-color: red;
 
     div{
-        box-shadow: inset 5px black;
+        display: grid;
+        transition: all .5s;
+        user-select: none;
+        background: linear-gradient(to bottom, blue, green);
     }
 }

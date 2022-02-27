@@ -8,7 +8,13 @@ import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 const sass = gulpSass(dartSass);
 
-// import prefix from 'gulp-autoprefixer';
+//CSS
+import prefixer from 'gulp-autoprefixer';
+
+//Optimización imágenes
+import imagemin from 'gulp-imagemin';
+
+
 // // import imagemin, {gifsicle, mozjpeg, optipng} from 'gulp-imagemin';
 // import browserSync from 'browser-sync';
 // browserSync.create();
@@ -44,7 +50,8 @@ const paths = {
 		dest  : './dist/js/'
 	},
 	images:{
-		src  : './src/assets/img/**/*.+(png|jpg|gif)',
+		// src  : './src/assets/img/**/*.+(png|jpg|gif)',
+		src: './src/assets/img/**/*', //asi toma cualquier extension de imagen
 		dest  : './dist/assets/img/'
 	},
 	server:{
@@ -72,8 +79,36 @@ gulp.task('sass', () => {
 				outputStyle: 'expanded' //Values: nested, expanded, compact, compressed
 			}).on('error', sass.logError)
 		)
+		.pipe(prefixer('last 2 versions'))
 		.pipe(gulp.dest(paths.sass.dest))
 });
+
+//---------------------------------------------------------------------
+// TAREA MINIFICAR Y OPTIMIZAR IMAGENES
+//---------------------------------------------------------------------
+
+gulp.task('img-min', () => {
+	return gulp.src(paths.images.src)
+		.pipe(imagemin([
+			gifsicle({interlaced: true}),
+			mozjpeg({quality: 75, progressive: true}),
+			optipng({optimizationLevel: 5}),
+			svgo({
+				plugins: [
+					{
+						name: 'removeViewBox',
+						active: true
+					},
+					{
+						name: 'cleanupIDs',
+						active: false
+					}
+				]
+			})
+		]))
+		.pipe(gulp.dest(paths.images.dest));
+});
+
 
 // export function compileSass(){
 // 	return src(paths.css.src)
@@ -91,20 +126,6 @@ gulp.task('sass', () => {
 // 	return src(paths.js.watch)
 // 		.pipe(dest(paths.js.dest))
 // 		// .pipe(browserSync.stream());
-// }
-
-//---------------------------------------------------------------------
-// TAREA MINIFICAR Y OPTIMIZAR IMAGENES
-//---------------------------------------------------------------------
-
-// export function optimizeImg(){
-// 	return gulp.src(paths.images.src)
-// 	  .pipe(imagemin([
-// 		gifsicle({interlaced: true}),
-// 		mozjpeg({quality: 75, progressive: true}),
-// 		optipng({optimizationLevel: 5})
-// 	  ]))
-// 	  .pipe(gulp.dest(paths.images.dest));
 // }
 
 //---------------------------------------------------------------------
