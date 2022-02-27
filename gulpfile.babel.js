@@ -14,10 +14,9 @@ import prefixer from 'gulp-autoprefixer';
 //Optimización imágenes
 import imagemin from 'gulp-imagemin';
 
+//Browser sync
+import { init as server, stream, reload } from 'browser-sync';
 
-// // import imagemin, {gifsicle, mozjpeg, optipng} from 'gulp-imagemin';
-// import browserSync from 'browser-sync';
-// browserSync.create();
 
 //---------------------------------------------------------------------
 //  RUTAS DE LOS ARCHIVOS
@@ -57,7 +56,7 @@ gulp.task('copy-html', () => {
 });
 
 //---------------------------------------------------------------------
-// TAREA sass
+// TAREA SASS
 //---------------------------------------------------------------------
 
 gulp.task('sass', () => {
@@ -67,8 +66,9 @@ gulp.task('sass', () => {
 				outputStyle: 'expanded' //Values: nested, expanded, compact, compressed
 			}).on('error', sass.logError)
 		)
-		.pipe(prefixer('last 2 versions'))
+		.pipe(prefixer('last 2 versions')) // añade prefijos CSS
 		.pipe(gulp.dest(paths.sass.dest))
+		.pipe(stream()); //auto-inyectar al navegador
 });
 
 //---------------------------------------------------------------------
@@ -97,41 +97,15 @@ gulp.task('img-min', () => {
 		.pipe(gulp.dest(paths.images.dest));
 });
 
-
-// export function compileSass(){
-// 	return src(paths.css.src)
-// 		.pipe(sass().on('error', sass.logError) ) // Compile sass into CSS
-// 		.pipe(prefix('last 2 versions')) // añade prefijos CSS
-// 		.pipe(dest(paths.css.dest))
-// 		.pipe(browserSync.stream()); // auto-inject into browser
-// }
-
 //---------------------------------------------------------------------
 // COPIAR JS
 //---------------------------------------------------------------------
 
-// export function copyJs(){
-// 	return src(paths.js.watch)
-// 		.pipe(dest(paths.js.dest))
-// 		// .pipe(browserSync.stream());
-// }
+gulp.task('copy-js', () => {
+	return gulp.src(paths.js.src)
+		.pipe(gulp.dest(paths.js.dest))
+});
 
-//---------------------------------------------------------------------
-// RUN SERVER
-//---------------------------------------------------------------------
-
-// Static Server
-// function serve(){
-// 	browserSync.init({
-// 		server: {
-// 			baseDir: paths.server.folder,
-// 			// directory: true
-// 		}
-// 	});
-// 	watch(paths.css.watch, compileSass );
-// 	watch(paths.html.watch).on('change', browserSync.reload);
-// 	watch(paths.js.watch).on('change', browserSync.reload);
-// }
 
 //---------------------------------------------------------------------
 // TAREA WATCH
@@ -149,18 +123,17 @@ gulp.task('img-min', () => {
 //---------------------------------------------------------------------
 
 gulp.task('default', () => {
-	gulp.watch(paths.html.watch, gulp.series('copy-html') );
+	// RUN STATIC SERVER
+	server({
+		server: {
+			baseDir: paths.server.folder,
+		}
+	});
+	//  WATCH + RELOAD BROWSER
+	gulp.watch(paths.html.watch, gulp.series('copy-html') ).on('change', reload);
 	gulp.watch(paths.sass.watch, gulp.series('sass') );
-	// copyJs,
-	// startup,
-	// optimizeImg,
-	// watchTask,
-	// serve
+	// gulp.watch(paths.js.src, gulp.series('copy-js') ).on('change', reload);
 });
 
 // "series" ejecuta una tarea tras otra en orden.
 // "parallel" ejecuta las tareas simultaneamente (al mismo tiempo).
-
-// Exportación de funciones
-// al exportar, se pueden ejecutar en consola con: 
-// 	gulp nombreFuncion
