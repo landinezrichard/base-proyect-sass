@@ -19,18 +19,6 @@ import imagemin from 'gulp-imagemin';
 // import browserSync from 'browser-sync';
 // browserSync.create();
 
-// let imagemin;
-
-// const startup = async () => {
-//     // @ts-ignore
-//     imagemin = (await import("gulp-imagemin")).default;
-// };
-
-// // run this task before any that require imagemin
-// gulp.task("startup", async () => {
-//     await startup();
-// });
-
 //---------------------------------------------------------------------
 //  RUTAS DE LOS ARCHIVOS
 //---------------------------------------------------------------------
@@ -90,10 +78,10 @@ gulp.task('sass', () => {
 gulp.task('img-min', () => {
 	return gulp.src(paths.images.src)
 		.pipe(imagemin([
-			gifsicle({interlaced: true}),
-			mozjpeg({quality: 75, progressive: true}),
-			optipng({optimizationLevel: 5}),
-			svgo({
+			imagemin.gifsicle({interlaced: true}),
+			imagemin.mozjpeg({quality: 75, progressive: true}),
+			imagemin.optipng({optimizationLevel: 5}),
+			imagemin.svgo({
 				plugins: [
 					{
 						name: 'removeViewBox',
