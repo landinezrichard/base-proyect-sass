@@ -1,0 +1,6 @@
+body {
+  background-color: red;
+}
+body div {
+  box-shadow: inset 5px black;
+}
