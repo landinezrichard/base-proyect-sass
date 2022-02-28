@@ -346,13 +346,13 @@ template {
   src: url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 }
 html {
-  min-height: 100%;
   font-size: 16px;
   font-family: "Open Sans", sans-serif;
 }
 
 body {
   margin-bottom: 100px;
+  min-height: 100%;
 }
 
 img {
