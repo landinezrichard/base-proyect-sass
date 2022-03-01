@@ -3,7 +3,7 @@
 
 Este es un proyecto base para **Frontend**, como para **maquetar** un sitio web.
 
-Utiliza** [Gulp](https://gulpjs.com/ "Gulp")** como automatizador de tareas. Adicionalmente trae los siguientes extras:
+Utiliza [Gulp](https://gulpjs.com/ "Gulp") como automatizador de tareas. Adicionalmente trae los siguientes extras:
 
 ### Sass
 Utiliza [Sass](https://sass-lang.com/ "Sass") como preprocesador de CSS, de esta forma podrás tener varios módulos para cada uno de los componentes de la página web.
@@ -16,23 +16,27 @@ Se usará [browser-sync](https://browsersync.io/ "browser-sync"), un servidor es
 
 ## Empezando:
 1. Para empezar, crea la carpeta de tu nuevo proyecto:
- `mkdir new-project-name && cd $_`
+
+ 	`mkdir new-project-name && cd $_`
  
 2. Clona base-proyect-sass en la nueva carpeta:
-`git clone --depth=1 https://github.com/landinezrichard/base-proyect-sass.git . && rm -rf ./.git`
+
+	`git clone --depth=1 https://github.com/landinezrichard/base-proyect-sass.git . && rm -rf ./.git`
 
 3. Instala las herramientas de desarrollo:
-`npm i`
+
+	`npm i`
 
 4. No olvidar realizar el control de versiones con:
-`git init`
+
+	`git init`
 
 
 **Nota**: cambiar el nombre del proyecto y el repositorio en el archivo ***"package.json"***
 
-Y** listo!!!** ya estas preparado para empezar a maquetar.
+Y **listo!!!** ya estas preparado para empezar a maquetar.
 
-## :tw-1f4c2: Scaffolding:
+## :open_file_folder: Scaffolding:
 
 Tu proyecto tendrá la siguiente estructura:
 
@@ -51,7 +55,7 @@ Tu proyecto tendrá la siguiente estructura:
   - package-lock.json     # Histórico de versiones de dependencias
   - .gitignore            # Ficheros y carpetas a ignorar por git
 
-## :tw-1f4bb:Desarrollo:
+## :computer: Desarrollo:
 
 El proyecto tiene las siguientes tareas definidas:
 
@@ -75,6 +79,6 @@ Ahora solo queda:
 
 ------------
 
-*~~si, ya se que proyecto en inglés es project~~ :tw-1f445: 
+*~~si, ya se que proyecto en inglés es project~~ :stuck_out_tongue_winking_eye:
 
 ------------
