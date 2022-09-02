@@ -1,27 +1,24 @@
 //Normalize
-@use './modulos/normalize';
+@use './base/normalize';
 
 //Mixins
-@use './modulos/mixins';
+@use './base/mixins';
 
 //Fuentes
-@use './modulos/fuentes';
+@use './base/fuentes';
 
 //Estilos generales
-@use './modulos/generales';
+@use './base/base';
 
 //---------------------------------------------------------------------
 // COMPONENTES
 //---------------------------------------------------------------------
 
 //Header
-@use './modulos/header';
+@use './components/header';
 
 //Menu
-@use './modulos/menu';
+@use './components/menu';
 
 //FOOTER
-@use './modulos/footer';
-
-//RESPONSIVE
-@use './modulos/responsive';
+@use './components/footer';
